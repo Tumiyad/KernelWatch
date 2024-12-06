@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# 运行 Docker 容器，映射当前目录，设置工作目录为 /workspace，并执行 make 命令
+docker run --rm -it \
+    -v "$(pwd)":/workspace \
+    -w /workspace \
+    oldmake:latest \
+    gcc "$@"

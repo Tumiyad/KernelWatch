@@ -1,0 +1,1 @@
+mount ext3_disk.img mnt

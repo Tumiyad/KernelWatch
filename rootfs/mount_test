@@ -1,0 +1,26 @@
+mkdir -p /mnt/test_root
+
+mkdir -p /mnt/test_root/dir1/dir2/dir3/dir4
+mkdir -p /mnt/test_root/dir1/dir5/dir6
+mkdir -p /mnt/test_root/dir7/dir8
+mkdir -p /mnt/test_root/dir9
+mkdir -p /mnt/test_root/dir10/dir11/dir12
+
+mount -t sysfs sysfs /mnt/test_root/dir1/dir2/dir3
+mount -t tmpfs tmpfs /mnt/test_root/dir1/dir5
+mount -t sysfs sysfs /mnt/test_root/dir7/dir8
+mount -t tmpfs tmpfs /mnt/test_root/dir10
+
+mkdir -p /mnt/test_root/dir1/dir5/dir13/dir14
+mkdir -p /mnt/test_root/dir10/dir15/dir16
+mkdir -p /mnt/test_root/dir10/dir11/dir12/dir17
+
+mount -t tmpfs tmpfs /mnt/test_root/dir1/dir5/dir13
+mount -t sysfs sysfs /mnt/test_root/dir10/dir15
+mount -t tmpfs tmpfs /mnt/test_root/dir10/dir11/dir12/dir17
+
+echo "挂载点信息："
+mount | grep /mnt/test_root
+
+echo "测试目录和挂载点已经创建。"
+

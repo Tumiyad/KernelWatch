@@ -1,0 +1,21 @@
+#!/bin/sh
+echo "### INIT SCRIPT ###"
+mkdir /proc /sys /tmp
+mount -t proc none /proc
+mount -t sysfs none /sys
+mount -t tmpfs none /tmp
+
+
+# network init
+#ip addr add 127.0.0.1/24 dev lo
+ip addr add 127.0.1.1/8 dev lo
+ip link set lo up
+ip addr add 10.0.2.15/24 dev eth0
+ip link set eth0 up
+ip route add default via 10.0.2.2
+
+echo -e "\nThis boot took $(cut -d' ' -f1 /proc/uptime) seconds\n"
+setsid  cttyhack sh
+exec /bin/sh
+#echo "./mount_ext3_disk" | exec /bin/sh
+

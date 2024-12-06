@@ -1,0 +1,103 @@
+import gdb
+
+class Bk(gdb.Command):
+    """Load the VFS script in GDB"""
+
+    def __init__(self):
+        super(Bk, self).__init__("bk", gdb.COMMAND_USER)  # load script
+
+    def invoke(self, arg, from_tty):
+        # breakpoints
+        self.breakpoints()
+
+    def breakpoints(self):
+        # b1=gdb.Breakpoint("sys_listen")
+        # b1.commands="info args"
+        # sys_connect=gdb.Breakpoint("sys_connect")
+        # gdb.Breakpoint("neighbour.c:939")
+        ip_finish_output2=gdb.Breakpoint("ip_finish_output2")
+        ip_finish_output2.commands="bk5"
+        # neigh_resolve_output=gdb.Breakpoint("neigh_resolve_output")
+
+        # sys_accept=gdb.Breakpoint("sys_accept")
+        # inet_csk_wait_for_connect=gdb.Breakpoint("inet_csk_wait_for_connect")
+        # b sys_write
+
+        pass
+
+# Register commands
+Bk()
+
+
+class Bk2(gdb.Command):
+    """Load the VFS script in GDB"""
+
+    def __init__(self):
+        super(Bk2, self).__init__("bk2", gdb.COMMAND_USER)  # load script
+
+    def invoke(self, arg, from_tty):
+        # breakpoints
+        #b neighbour.c:1215
+        # gdb.Breakpoint("neighbour.c:1215")
+        # gdb.Breakpoint("ip_output.c:209")
+        # dev_queue_xmit=gdb.Breakpoint("dev_queue_xmit")
+        # neigh_resolve_output=gdb.Breakpoint("neigh_resolve_output")
+        __neigh_event_send=gdb.Breakpoint("__neigh_event_send")
+        __neigh_event_send.commands="bk4"
+        # __do_softirq=gdb.Breakpoint("__do_softirq")
+
+
+# Register commands
+Bk2()
+
+class Bk3(gdb.Command):
+    """Load the VFS script in GDB"""
+
+    def __init__(self):
+        super(Bk3, self).__init__("bk3", gdb.COMMAND_USER)  # load script
+
+    def invoke(self, arg, from_tty):
+        __do_softirq=gdb.Breakpoint("__do_softirq")
+        __do_softirq.commands="bk4"
+
+# Register commands
+Bk3()
+
+
+class Bk4(gdb.Command):
+    """Load the VFS script in GDB"""
+
+    def __init__(self):
+        super(Bk4, self).__init__("bk4", gdb.COMMAND_USER)  # load script
+
+    def invoke(self, arg, from_tty):
+        __do_softirq=gdb.Breakpoint("dev_queue_xmit")
+
+
+# Register commands
+Bk4()
+
+# Bk5
+class Bk5(gdb.Command):
+    """Load the VFS script in GDB"""
+
+    def __init__(self):
+        super(Bk5, self).__init__("bk5", gdb.COMMAND_USER)  # load script
+
+    def invoke(self, arg, from_tty):
+        syn_skb=gdb.parse_and_eval("skb")
+        # 条件断点 dev_queue_xmit 参数skb=syn_skb
+        # dev_queue_xmit=gdb.Breakpoint("dev_queue_xmit")
+        # dev_queue_xmit.condition="skb=="+str(syn_skb)
+        # __napi_schedule=gdb.Breakpoint("__napi_schedule")
+        # # __napi_schedule.condition="skb=="+str(syn_skb)
+        # loopback_xmit=gdb.Breakpoint("loopback_xmit")
+        # loopback_xmit.condition="skb=="+str(syn_skb)
+        # ip_rcv=gdb.Breakpoint("ip_rcv")
+        # ip_rcv.condition="skb=="+str(syn_skb)
+        tcp_v4_rcv=gdb.Breakpoint("tcp_v4_rcv")
+        tcp_v4_rcv.condition="skb=="+str(syn_skb)
+        tcp_v4_rcv.commands="b loopback_xmit"
+
+# Register commands
+Bk5()

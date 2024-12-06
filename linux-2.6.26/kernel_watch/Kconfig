@@ -1,0 +1,41 @@
+menu "Hello menu"
+
+config HELLO_OPTION_1
+    bool "Option 1"
+    default y
+    help
+      This is the first option under the Hello menu.
+
+config HELLO_OPTION_2
+    bool "Option 2"
+    default n
+    help
+      This is the second option under the Hello menu.
+
+config HELLO_OPTION_3
+    tristate "Option 3 (tristate)"
+    default m
+    help
+      This is a tristate option, it can be set to:
+      y (enabled), m (module), or n (disabled).
+
+config HELLO_OPTION_4
+    bool "Option 4"
+    default TTT = AAA
+
+config HELLO_OPTION_5
+    bool "Option 5"
+    default HELLO_OPTION_1 != y
+
+config HELLO_OPTION_6
+    bool "Option x86" if ARCH = "x86"
+    default number = 4
+
+config HELLO_OPTION_7
+    bool "Option x86_32" if ARCH = "x86_32"
+    default number = 4
+config HELLO_OPTION_8
+    bool "Option i386" if ARCH = "i386"
+    default ARCH = "i386"
+
+endmenu

@@ -1,0 +1,2 @@
+测试port32udp协议
+    收到数据包，能否正常传递到port32udp_rcv

@@ -1,0 +1,1 @@
+关掉dcache，观察do_lookup行为。
