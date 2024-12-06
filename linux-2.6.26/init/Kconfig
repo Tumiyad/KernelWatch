@@ -745,7 +745,7 @@ config SLUB_DEBUG
 
 choice
 	prompt "Choose SLAB allocator"
-	default SLUB
+	default MINISLUB
 	help
 	   This option allows to select a slab allocator.
 
@@ -765,6 +765,11 @@ config SLUB
 	   Per cpu caching is realized using slabs of objects instead
 	   of queues of objects. SLUB can use memory efficiently
 	   and has enhanced diagnostics.
+
+config MINISLUB
+	bool "MINISLUB (TEST Allocator)"
+	help
+	   MINISLUB is similar to SLUB.
 
 config SLOB
 	depends on EMBEDDED
